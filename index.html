@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KASHICORE INTERIORS</title>
+    <style>
+        :root {
+            --taupe-taune: #b38b6d;
+            --cream: #f8f5f2;
+            --white: #ffffff;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            text-align: left; /* Ensure left alignment */
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #111;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background: none !important;
+        }
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+        }
+        header,
+        main,
+        section,
+        .animation-section {
+            background: none !important;
+        }
+        h1, h2, p, nav a, strong, button.cta-btn {
+            color: #FFFFFF !important; /* Change to your preferred color */
+            font-weight: 700;
+            text-shadow: none;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav a {
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #333 !important;
+        }
+        main {
+            max-width: none; /* Remove max-width */
+            margin: 0; /* Remove auto margins */
+            padding: 2.5rem 1rem; /* Reduced padding */
+            text-align: left;
+        }
+        /* Add this new rule to limit paragraph width */
+        main section {
+            max-width: 600px; /* Reduced from 800px to 600px */
+            margin: 0 0 0 1rem; /* Reduced left margin */
+            text-align: left;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.7;
+        }
+        .cta-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2.2rem;
+            background: none;
+            color: #111 !important;
+            border: 2px solid #111;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .cta-btn:hover {
+            background: #111;
+            color: #fff !important;
+        }
+        .animation-section {
+            position: relative;
+            overflow: hidden;
+            margin: 3rem 0 0 0;
+            text-align: center;
+            min-height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .header-bar {
+            width: 100vw;
+            max-width: none;
+            margin: 0;
+            background: #111;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .header-bar h1 {
+            color: #fff !important;
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
+        main section {
+            text-align: left;
+        }
+        /* Remove any potential conflicting styles */
+        main,
+main h2,
+main p,
+main ul,
+main li,
+main strong,
+main button {
+    text-align: left !important;
+    margin-left: 0; /* Ensure no extra margins */
+}
+        @media (max-width: 700px) {
+            main {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .animation-section {
+                min-height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video 
+        class="bg-video"
+        src="7490436-hd_1920_1080_30fps.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-hidden="true"
+        tabindex="-1">
+    </video>
+    <header>
+        <div class="header-bar">
+            <h1>KASHICORE INTERIORS</h1>
+        </div>
+        <nav>
+            <a href="#about" id="about-link">About</a>
+            <a href="#services" id="services-link">Services</a>
+            <a href="#contact" id="contact-link">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>
+                Welcome to KASHICORE INTERIORS, where elegance meets innovation. We specialize in transforming spaces with a blend of modern aesthetics and timeless comfort. Our team crafts interiors that reflect your personality and lifestyle, using a palette inspired by taupe and cream for a serene, sophisticated ambiance.
+            </p>
+        </section>
+        <section id="services">
+            <h2>Our Services</h2>
+            <p>
+                • Residential & Commercial Interior Design<br>
+                • Space Planning & 3D Visualization<br>
+                • Custom Furniture & Decor Solutions<br>
+                • Project Management & Consultation
+            </p>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>
+                Ready to elevate your space? <br>
+                <strong>Email:</strong> info@kashicoreinteriors.com<br>
+                <strong>Phone:</strong> +1 234 567 8901
+            </p>
+            <button class="cta-btn">Book a Consultation</button>
+        </section>
+    </main>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('main section').forEach(sec => sec.style.display = 'none');
+        // Show the selected section
+        const section = document.getElementById(sectionId);
+        if(section) section.style.display = 'block';
+    }
+
+    // Show all sections by default
+    document.querySelectorAll('main section').forEach(sec => sec.style.display = 'block');
+
+    document.getElementById('services-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('services');
+    });
+
+    document.getElementById('about-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('about');
+    });
+
+    document.getElementById('contact-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        showSection('contact');
+    });
+});
+</script>
+</body>
+</html>

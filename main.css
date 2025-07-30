@@ -1,0 +1,147 @@
+.animation-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+}
+
+.animation-section video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.animation-section > *:not(video) {
+    position: relative;
+    z-index: 1;
+}
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body {
+    background: none !important;
+    color: #111;
+}
+
+main, header, section, .animation-section {
+    background: transparent
+}
+
+h1, h2, p, nav a, strong, button.cta-btn {
+    color: #111 !important;
+}
+
+.header-bar {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto 1rem auto;
+    background: #111;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.header-bar h1 {
+    color: #fff !important;
+    margin: 0;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+}
+
+header {
+    background: #111 !important;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+nav {
+    margin-top: 1.5rem;
+}
+
+nav a {
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #fff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+button.cta-btn {
+    background: #fff;
+    color: #111;
+    border: none;
+    border-radius: 24px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button.cta-btn:hover {
+    background: rgba(255,255,255,0.8);
+}
+
+main {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the main content */
+    padding: 2.5rem;
+    text-align: left; /* Keep text left-aligned */
+    word-wrap: break-word; /* Break long words */
+}
+
+main section,
+main section h2,
+main section p,
+main section strong,
+main section ul,
+main section li,
+main section button {
+    text-align: left !important;
+}
