@@ -26,15 +26,99 @@
     z-index: 1;
 }
 
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 .bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     object-fit: cover;
     z-index: -1;
     pointer-events: none;
+}
+
+.content-wrapper {
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the main content */
+    padding: 2.5rem;
+    text-align: left; /* Keep text left-aligned */
+    word-wrap: break-word; /* Break long words */
+}
+
+main section,
+main section h2,
+main section p,
+main section strong,
+main section ul,
+main section li,
+main section button {
+    text-align: left !important;
+}
+
+.about-text {
+    max-width: 900px;
+    width: 100%;
+    font-size: 1.15rem;
+    word-break: break-word;
+    line-height: 1.7;
+}
+
+.cta-btn#consult-btn {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: #fff;
+    color: #111;
+    margin: 10vh auto;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 350px;
+    width: 90vw;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.modal-content h2 { text-align: center; }
+.modal-content label { display: block; margin: 1rem 0 0.3rem 0; }
+.modal-content input {
+    width: 100%; padding: 0.5rem; margin-bottom: 1rem;
+    border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;
+}
+.modal-content .cta-btn {
+    width: 100%; margin: 0.5rem 0 0 0;
+    left: unset; bottom: unset; transform: none; position: static;
+}
+.close {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 2rem; color: #111; cursor: pointer;
 }
 
 body {
@@ -128,36 +212,50 @@ button.cta-btn:hover {
     background: rgba(255,255,255,0.8);
 }
 
-main {
-    max-width: 800px; /* Adjust as needed */
-    margin: 0 auto; /* Center the main content */
-    padding: 2.5rem;
-    text-align: left; /* Keep text left-aligned */
-    word-wrap: break-word; /* Break long words */
+.consult-form-box {
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 350px;
+    width: 90vw;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }
-
-main section,
-main section h2,
-main section p,
-main section strong,
-main section ul,
-main section li,
-main section button {
-    text-align: left !important;
+.consult-form-box h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
-
-.about-text {
-    max-width: 900px;
+.consult-form-box label {
+    color: #fff;
+    align-self: flex-start;
+}
+.consult-form-box input {
+    margin-bottom: 1rem;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    padding: 0.5rem;
     width: 100%;
-    font-size: 1.15rem;
-    word-break: break-word;
-    line-height: 1.7;
+}
+.consult-form-box .cta-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+#consult-form-area {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 @media (max-width: 700px) {
-    .about-text {
-        max-width: 98vw;
-        font-size: 1.05rem;
-        padding-right: 0;
-    }
+    main { padding: 1rem; }
+    .about-text { max-width: 98vw; font-size: 1.05rem; }
 }
