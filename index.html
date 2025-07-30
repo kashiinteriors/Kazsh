@@ -10,6 +10,12 @@
             --cream: #f8f5f2;
             --white: #ffffff;
         }
+        body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
         html, body {
             margin: 0;
             padding: 0;
@@ -24,15 +30,20 @@
             background: none !important;
         }
         .bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             object-fit: cover;
             z-index: -1;
             pointer-events: none;
         }
+        .content-wrapper {
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
         header,
         main,
         section,
@@ -62,6 +73,7 @@
             color: #333 !important;
         }
         main {
+            flex: 1 0 auto;
             max-width: none; /* Remove max-width */
             margin: 0; /* Remove auto margins */
             padding: 2.5rem 1rem; /* Reduced padding */
@@ -131,6 +143,11 @@
             width: 100%;
             display: block;
         }
+        /* Fix placeholder color for consultation form inputs */
+        .consult-form-box input::placeholder {
+            color: #111 !important;
+            opacity: 1;
+        }
         main section {
             text-align: left;
         }
@@ -171,6 +188,39 @@ main button {
                 min-height: 180px;
             }
         }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background: #fff;
+    color: #111;
+    margin: 10vh auto;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 350px;
+    width: 90vw;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    position: relative;
+}
+.modal-content h2 { text-align: center; }
+.modal-content label { display: block; margin: 1rem 0 0.3rem 0; }
+.modal-content input {
+    width: 100%; padding: 0.5rem; margin-bottom: 1rem;
+    border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;
+}
+.modal-content .cta-btn {
+    width: 100%; margin: 0.5rem 0 0 0;
+    left: unset; bottom: unset; transform: none; position: static;
+}
+.close {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: 2rem; color: #111; cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -184,42 +234,63 @@ main button {
         aria-hidden="true"
         tabindex="-1">
     </video>
-    <header>
-        <div class="header-bar">
-            <h1>KASHICORE INTERIORS</h1>
+    <div class="content-wrapper">
+        <header>
+            <div class="header-bar">
+                <h1>KASHICORE INTERIORS</h1>
+            </div>
+            <nav>
+                <a href="#about" id="about-link">About</a>
+                <a href="#services" id="services-link">Services</a>
+                <a href="#contact" id="contact-link">Contact</a>
+            </nav>
+        </header>
+        <main>
+            <section id="about">
+                <h2>About Us</h2>
+                <p class="about-text">
+                    Welcome to KASHICORE INTERIORS—where elegance meets innovation. We transform spaces with modern aesthetics and lasting comfort, tailored for you.
+                </p>
+            </section>
+            <section id="services">
+                <h2>Our Services</h2>
+                <p>
+                    • Residential & Commercial Interior Design<br>
+                    • Space Planning & 3D Visualization<br>
+                    • Custom Furniture & Decor Solutions<br>
+                    • Project Management & Consultation
+                </p>
+            </section>
+            <section id="contact">
+    <div id="contact-content">
+        <h2>Contact Us</h2>
+        <p>
+            Ready to elevate your space? <br>
+            <strong>Email:</strong> info@kashicoreinteriors.com<br>
+            <strong>Phone:</strong> +1 234 567 8901
+        </p>
+        <button class="cta-btn" id="consult-btn">Book a Consultation</button>
+    </div>
+    <div id="consult-form-area" style="display:none; margin-top:2rem; width:100%; justify-content:center; align-items:center;">
+        <div class="consult-form-box">
+            <h2 style="color:#fff; font-size:2rem; margin-bottom:2rem; text-align:center; letter-spacing:1px;">Book a Consultation</h2>
+            <form id="consult-form" style="width:100%; display:flex; flex-direction:column; gap:1rem;">
+                <label for="name" style="color:#fff; font-size:1.1rem; margin-bottom:0.3rem;">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name" style="background:rgba(255,255,255,0.12); color:#fff; border:none; border-bottom:2px solid #fff; border-radius:6px 6px 0 0; padding:0.7rem; font-size:1rem;::placeholder{color:#111;}">
+                <label for="mobile" style="color:#fff; font-size:1.1rem; margin-bottom:0.3rem;">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,15}" placeholder="Enter your mobile number" style="background:rgba(255,255,255,0.12); color:#fff; border:none; border-bottom:2px solid #fff; border-radius:6px 6px 0 0; padding:0.7rem; font-size:1rem;::placeholder{color:#111;}">
+                <label for="email" style="color:#fff; font-size:1.1rem; margin-bottom:0.3rem;">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email" style="background:rgba(255,255,255,0.12); color:#fff; border:none; border-bottom:2px solid #fff; border-radius:6px 6px 0 0; padding:0.7rem; font-size:1rem;::placeholder{color:#111;}">
+                <button type="submit" class="cta-btn" style="width:100%; margin-top:1rem; background:#fff; color:#111 !important; font-weight:700; border:none;">Submit</button>
+            </form>
         </div>
-        <nav>
-            <a href="#about" id="about-link">About</a>
-            <a href="#services" id="services-link">Services</a>
-            <a href="#contact" id="contact-link">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <section id="about">
-            <h2>About Us</h2>
-            <p class="about-text">
-                Welcome to KASHICORE INTERIORS—where elegance meets innovation. We transform spaces with modern aesthetics and lasting comfort, tailored for you.
-            </p>
-        </section>
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>
-                • Residential & Commercial Interior Design<br>
-                • Space Planning & 3D Visualization<br>
-                • Custom Furniture & Decor Solutions<br>
-                • Project Management & Consultation
-            </p>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>
-                Ready to elevate your space? <br>
-                <strong>Email:</strong> info@kashicoreinteriors.com<br>
-                <strong>Phone:</strong> +1 234 567 8901
-            </p>
-            <button class="cta-btn">Book a Consultation</button>
-        </section>
-    </main>
+    </div>
+</section>
+        </main>
+    </div>
+    <!-- Modal for consultation form goes here -->
+    <div id="consult-modal" class="modal">
+    <!-- Modal removed, form is now inline in contact section -->
     <script>
 document.addEventListener("DOMContentLoaded", function () {
     function showSection(sectionId) {
@@ -246,6 +317,20 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('contact-link').addEventListener('click', function(e) {
         e.preventDefault();
         showSection('contact');
+    });
+
+    // Inline consultation form functionality
+    const consultBtn = document.getElementById('consult-btn');
+    const consultFormArea = document.getElementById('consult-form-area');
+    consultBtn.addEventListener('click', function() {
+        // Hide contact info, show only the centered consultation form
+        showSection('contact');
+        document.getElementById('contact-content').style.display = 'none';
+        consultFormArea.style.display = 'flex';
+    });
+    document.getElementById('consult-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        consultFormArea.innerHTML = `<div style='width:100%; display:flex; justify-content:center; align-items:center;'><h2 style='color:#fff; font-size:2rem; margin-bottom:2rem; text-align:center;'>Thank you,<br>We'll contact you shortly.</h2></div>`;
     });
 });
 </script>
